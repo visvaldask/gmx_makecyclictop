@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# remove first and last (number 0 and 5) residues in the top file to create a new file for cyclic ligand
+# by Visvaldas Kairys, Vilnius University, Institute of Biotechnology
 # see instructions below
 
 use strict;
