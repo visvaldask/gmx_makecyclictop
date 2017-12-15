@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 #
 # by Visvaldas Kairys, Vilnius University, Institute of Biotechnology
+# for questions/comments please send me an email visvaldas.kairys (at) bti.vu.lt
 # see instructions below
 
 use strict;
