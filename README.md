@@ -12,7 +12,7 @@ to the end should be taken from the beginning.
 
 for example, your cyclic peptide is   MKSY
 
-you have to make a pdb file of peptide YMKSYM
+you have to make a pdb file of peptide **Y**MKSY**M**
 
 I highlighted the additional residues. The idea is : M has to follow after Y in the beginning (in the final cyclic petide; imagine the sequence going in circles), and M has to follow after Y in the end.
 
@@ -210,7 +210,7 @@ Use that file for your simulation purposes, e.g. convert it to GRO and add simul
 
 Use *myfile_gmx_edit.gro* and *topol_cyc.top* for futher GROMACS simulations.
 
-If you have furtehr questions/bug reports, send email to visvaldas.kairys(at)bti.vu.lt.
+If you have further questions/bug reports, send email to visvaldas.kairys(at)bti.vu.lt.
 
 Have fun!
 
