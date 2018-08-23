@@ -2,7 +2,7 @@
 #
 # by Visvaldas Kairys, Vilnius University, Institute of Biotechnology
 # for questions/comments please send me an email visvaldas.kairys (at) bti.vu.lt
-# see instructions below
+# see instructions below, or in the README.md file
 
 use strict;
 
@@ -24,7 +24,7 @@ if(@ARGV!=1){
 
 #the last residue pasted in the beginning and the first in the end
 
-#need to use the coords from the generated pdb file, not the original
+#need to use the coords from the GROMACS generated pdb file, not the original
 
 
 (my $root = $ARGV[0]) =~ s/(.+)\.[^.]+$/$1/;
@@ -242,6 +242,7 @@ while(<TOPF>){
 	}elsif(/^\[ dihedrals \]/ .. /^\s*$/){  #until blank line
 		unless(/^\[ dihedrals \]/ or /^\s*$/ or /^;/){
 			chomp; my @tmp=split;
+			my $stuff="UNDEF";
 			my $res1=$at2res{$tmp[0]};
 			my $res2=$at2res{$tmp[1]};
 			my $res3=$at2res{$tmp[2]};
@@ -250,6 +251,11 @@ while(<TOPF>){
 			my $newat2=$newnumat{$tmp[1]};
 			my $newat3=$newnumat{$tmp[2]};
 			my $newat4=$newnumat{$tmp[3]};
+			if (exists $tmp[5]){ #check params like "improper_O_C_X_Y"
+				$stuff=$tmp[5];
+			}else{
+				$stuff="   ";  #make empty param if absent
+			}
 			#print "dihedrals: atom $tmp[0] $tmp[1] $tmp[2] $tmp[3], residues $res1 $res2 $res3 $res4\n";
 			if($tobedeleted{$res1}+$tobedeleted{$res2}+$tobedeleted{$res3}+$tobedeleted{$res4} == 4){
 				#print "To be deleted!\n";
@@ -260,7 +266,9 @@ while(<TOPF>){
 					#print "retained,making a cycle!\n";
 					#print "new CYCLE line:\n";
 					#printf ("%5d %5d %5d %5d %5d\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
-					printf MODF ("%5d %5d %5d %5d %5d ;cycle\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
+					#printf ("%5d %5d %5d %5d %5d %s\n",$newat1,$newat2,$newat3,$newat4,$tmp[4],$stuff);
+					#printf MODF ("%5d %5d %5d %5d %5d ;cycle\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
+					printf MODF ("%5d %5d %5d %5d %5d %s ;cycle\n",$newat1,$newat2,$newat3,$newat4,$tmp[4],$stuff);
 				}else{
 					#print "cycle, but deleted!\n";
 				}
@@ -270,7 +278,9 @@ while(<TOPF>){
 				#print "retained,just need to renumber\n";
 				#print "new line:\n";
 				#printf ("%5d %5d %5d %5d %5d\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
-				printf MODF ("%5d %5d %5d %5d %5d\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
+				#printf ("%5d %5d %5d %5d %5d %s\n",$newat1,$newat2,$newat3,$newat4,$tmp[4],$stuff);
+				#printf MODF ("%5d %5d %5d %5d %5d\n",$newat1,$newat2,$newat3,$newat4,$tmp[4]);
+				printf MODF ("%5d %5d %5d %5d %5d %s\n",$newat1,$newat2,$newat3,$newat4,$tmp[4],$stuff);
 			}
 		}else{
 			print MODF $_;
