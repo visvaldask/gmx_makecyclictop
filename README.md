@@ -1,9 +1,9 @@
 # gmx_makecyclictop
 This script makes a cyclic peptide or cyclic nucleotide topology file for gromacs out of the (specially prepared) linear molecule topology file
 
-###Detailed instructions for the current version of the script
+### Detailed instructions for the current version of the script
 
-####(1) First step, take your cyclic peptide/nucleotide pdb file and imagine it’s linear (for a moment).
+#### (1) First step, take your cyclic peptide/nucleotide pdb file and imagine it’s linear (for a moment).
 
 Add using text editor additional 2 additional residues to N and C termini.
 
@@ -184,13 +184,13 @@ Notice how the residue numbers go from 0 to 5 now.
 
 The atom numbering is in a mess but it’s not important, just the residue numbers are important.
 
-####(2) next run your edited file (let's say *myfile.pdb*) through GROMACS using command something like:
+#### (2) next run your edited file (let's say *myfile.pdb*) through GROMACS using command something like:
 
 *gmx pdb2gmx -f myfile.pdb -o myfile_gmx.pdb*
 
 GROMACS creates topology file, write down it’s name (probably *topol.top*, but could be something else, like .itp file; if .itp is created, you should use it instead of .top for step 3).
 
-####(3) Now run the perl script on that top file:
+#### (3) Now run the perl script on that top file:
 
 *gmx_makecyclictop.pl topfile*
 
@@ -198,7 +198,7 @@ where topfile is the topology file created in step (2).
 
 The script creates new topology file, e.g. *topol_cyc.top*.
 
-####(4) The hardest part, the topology file, is done. Now we just have to make sure we have the PDB (or GRO) file matching it.
+#### (4) The hardest part, the topology file, is done. Now we just have to make sure we have the PDB (or GRO) file matching it.
 
 For this, **delete the residues** added at step (1) **from the GROMACS generated file** (*myfile_gmx.pdb*)
 
