@@ -1,5 +1,7 @@
 # gmx_makecyclictop
-This script makes a cyclic peptide or cyclic nucleotide topology file for gromacs out of the (specially prepared) linear molecule topology file
+This script makes a cyclic peptide or cyclic nucleotide topology file for GROMACS molecular dynamics program out of the (specially prepared) linear molecule topology file.
+
+This script was developed at the Department of Bionformatics which is a part of the Institute of Biotechnology, Life Sciences Center, Vilnius University. The script was written by V. Kairys visvaldas.kairys(at)bti.vu.lt. You can find other useful bioinfomatics software on our web site http://www.bti.vu.lt/en/departments/department-of-bioinformatics/software.   
 
 ### Detailed instructions for the current version of the script
 
